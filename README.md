@@ -10,7 +10,7 @@ This is a very light project setup designed to get your REST-api up and running 
 
 ## Installation
 
-`composer create-project neoan.io/rest-api-starter my-app`
+`composer create-project neoan.io/rest-api-starter-project my-app`
 
 `cd my-app`
 
