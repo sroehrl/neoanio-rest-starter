@@ -52,3 +52,20 @@ Your checklist:
 - folder src/Example necessary?
 - is only the folder /public exposed to the web?
 
+## Change from SQLite to MySQL or MariaDB
+
+First, add the following information to your .env file
+
+- DB_HOST 
+- DB_NAME
+- DB_USER
+- DB_PASSWORD
+- DB_CHARSET
+- DB_PORT
+
+Make sure that the selected database is created. Then, change the constructor of `config/Database.php` to use the method
+`useMySql` instead of `useSQLite`.
+
+When migrating, use the dialect keyword `mysql` instead of `sqlite`:
+
+`php cli migrate:models mysql`
