@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LENKRAD Pure-Starter</title>
+    <link rel="stylesheet" href="https://unpkg.com/gaudiamus-css@latest/css/gaudiamus.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.1.3/axios.min.js" integrity="sha512-0qU9M9jfqPw6FKkPafM3gy2CBAvUWnYVOfNPDYKVuRTel1PrciTj+a9P3loJB+j0QmN2Y0JYQmkBBS8W+mbezg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+        body{
+            font-family: 'Roboto', sans-serif;
+        }
+
+    </style>
+</head>
+<body class="bg-gray">
+<div class="p-5 bg-primary text-white">
+    <h1 class="font-lg">LENKRAD API starter project</h1>
+</div>
+<section class="grid m-t-5" x-data="postForm">
+    <div class="place-x-center bg-white b-rounded w-80p p-5 raise-1-primary">
+        <h2 class="font-md font-strong">Welcome to the fastest & easiest REST-API starter project</h2>
+        <p class="font-sm">current controller: {{name}}</p>
+        <p>What's included?</p>
+        <ul>
+            <li>JWT authentication</li>
+            <li>Attribute routing</li>
+            <li>ORM handler</li>
+        </ul>
+        <p>
+            In order to see the simplicity of handling requests,
+            please have a look at the file <code>src/Example/Api/Example.php</code> <br>
+            The endpoint accepts the methods POST, GET, PUT & DELETE (via attributes)
+        </p>
+        <h2 class="font-md font-strong">Quick start</h2>
+        <h3>Creating new endpoints</h3>
+        <ul>
+            <li class="p-y-2">Run <pre class="b-1 b-rounded p-1">php cli create:controller App\Movies\GetMovies</pre> in your terminal. (On unix systems, you will have to use 2 backslashes)</li>
+            <li class="p-y-2">Add the attribute <pre class="b-1 b-rounded p-1">#[\Neoan\Routing\Attributes\Get('/api/movies')]</pre> to the generated class (src/Movies/GetMovies.php).</li>
+            <li class="p-y-2">Visit <a class="text-primary" href="/api/movies" target="_blank">/api/movies</a></li>
+            <li class="p-y-2">Let's create a POST-endpoint as well <pre class="b-1 b-rounded p-1">php cli create:controller App\Movies\CreateMovie</pre></li>
+            <li class="p-y-2">And route it via <pre class="b-1 b-rounded p-1">#[\Neoan\Routing\Attributes\Post('/api/movies')]</pre></li>
+        </ul>
+        <h3>Creating a new model</h3>
+        <ul>
+            <li class="p-y-2">Run <pre class="b-1 b-rounded p-1">php cli create:model App\Movies\MovieModel</pre> in your terminal. (On unix systems, you will have to use 2 backslashes)</li>
+            <li class="p-y-2">
+                Open the file <code>src/Movies/MovieModel.php</code> and add two properties:
+                <ul style="list-style: none">
+                    <li class="p-y-2">public string $name;</li>
+                    <li class="p-y-2">public string $director;</li>
+                </ul>
+            </li>
+            <li class="p-y-2">
+                Then, migrate all models <pre class="b-1 b-rounded p-1">php cli migrate:models sqlite</pre>
+            </li>
+        </ul>
+        <h3>Connecting the dots</h3>
+        <ul>
+            <li class="p-y-2">
+                Let's revisit our <code>CreateMovie</code>-controller and apply the following changes:
+                <pre class="b-1 b-rounded p-1"><span style="text-decoration: line-through;">return ['name' => 'CreateMovie'];</span></pre>
+            </li>
+            <li class="p-y-2"><pre class="b-1 b-rounded p-1">$newMovie = MovieModel::retrieveOneOrCreate(\Neoan\Request\Request::getInputs())->store();</pre></li>
+            <li class="p-y-2"><pre class="b-1 b-rounded p-1">return $newMovie->toArray();</pre></li>
+            <li class="p-y-2">Now let's create one or two movies
+                <form action="/api/movies" method="post" x-on:submit.prevent="send">
+                    <input x-model="name" name="name" class="b-rounded b-1 b-primary p-x-2" placeholder="Name">
+                    <input x-model="director" name="director" class="b-rounded b-1 b-primary p-x-2" placeholder="Director">
+                    <button type="submit" class="b-rounded bg-primary text-white b-white cursor-pointer">store</button>
+                </form>
+            </li>
+            <li class="p-y-2">
+                Finally, we can expose our movies through our <code>GetMovies</code>-controller
+                <pre class="b-1 b-rounded p-1"><span style="text-decoration: line-through;">return ['name' => 'GetMovies'];</span></pre>
+            </li>
+            <li class="p-y-2"><pre class="b-1 b-rounded p-1">return MovieModel::retrieve()->toArray();</pre></li>
+            <li class="p-y-2">That's it! Let's try it: <a class="text-primary" href="/api/movies" target="_blank">/api/movies</a></li>
+        </ul>
+        <h3>Ready for the deep-dive?</h3>
+        <p>
+            This starter is based on <a class="text-primary" href="https://github.com/sroehrl/neoan.io-lenkrad-core#readme">neoan.io LENKRAD</a>.
+            You can use this code under MIT license in any project of your choice.
+        </p>
+    </div>
+</section>
+<script>
+    const postForm = {
+        name:'',
+        director: '',
+        send(){
+            axios.post('/api/movies', {name:this.name,director:this.director}).then(res => {
+                alert('sent');
+                this.name = ''
+                this.director = ''
+            })
+        }
+    }
+</script>
+</body>
+</html>

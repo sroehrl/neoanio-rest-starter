@@ -1,0 +1,10 @@
+#!/usr/bin/env php
+<?php
+echo "Generating env-file...\n";
+$envExample = file_get_contents(__DIR__ . '/.env.example');
+file_put_contents(__DIR__ . '/.env', $envExample);
+
+echo "Migrating models...\n\n";
+shell_exec('php cli migrate:models sqlite');
+
+echo "Done. Run 'php dev' to start developing";
