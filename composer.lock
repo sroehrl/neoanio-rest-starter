@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f2a7b816904920fdbb9cf97646683194",
+    "content-hash": "9c4110baca3abb2dcac6efa65930c2cf",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -829,12 +829,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sroehrl/neoan.io-lenkrad-core.git",
-                "reference": "60044f26b8012a834732de4ce7f78f91f99686af"
+                "reference": "2f6570d06426d5fbe2fef443d7a4d0580e6fdc79"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sroehrl/neoan.io-lenkrad-core/zipball/60044f26b8012a834732de4ce7f78f91f99686af",
-                "reference": "60044f26b8012a834732de4ce7f78f91f99686af",
+                "url": "https://api.github.com/repos/sroehrl/neoan.io-lenkrad-core/zipball/2f6570d06426d5fbe2fef443d7a4d0580e6fdc79",
+                "reference": "2f6570d06426d5fbe2fef443d7a4d0580e6fdc79",
                 "shasum": ""
             },
             "require": {
@@ -874,7 +874,7 @@
                 "issues": "https://github.com/sroehrl/neoan.io-lenkrad-core/issues",
                 "source": "https://github.com/sroehrl/neoan.io-lenkrad-core/tree/master"
             },
-            "time": "2022-10-27T18:27:57+00:00"
+            "time": "2022-10-27T18:55:06+00:00"
         },
         {
             "name": "neoan.io/legacy-db-adapter",
