@@ -14,6 +14,8 @@ This is a very light project setup designed to get your REST-api up and running 
 
 `cd my-app`
 
+`composer update`
+
 `php install`
 
 To run:
