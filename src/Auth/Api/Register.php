@@ -4,15 +4,16 @@ namespace App\Auth\Api;
 
 use App\Auth\Support\GenerateJWT;
 use App\User\Model\User;
+use Neoan\Provider\Injections;
 use Neoan\Request\Request;
 use Neoan\Response\Response;
 use Neoan\Routing\Attributes\Post;
-use Neoan\Routing\Routable;
+use Neoan\Routing\Interfaces\Routable;
 
 #[Post('/api/auth/register')]
 class Register implements Routable
 {
-    public function __invoke(array $provided): array
+    public function __invoke(Injections $provided): array
     {
         try{
             $user = new User(Request::getInputs());

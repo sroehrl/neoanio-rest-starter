@@ -3,14 +3,15 @@
 namespace App\Auth\Api;
 
 use App\Auth\Middleware\RequiresLogin;
+use Neoan\Provider\Injections;
 use Neoan\Routing\Attributes\Get;
-use Neoan\Routing\Routable;
+use Neoan\Routing\Interfaces\Routable;
 
 #[Get('/api/auth/me', RequiresLogin::class)]
 class Me implements Routable
 {
-    public function __invoke(array $provided): array
+    public function __invoke(Injections $provided): array
     {
-        return $provided['auth'];
+        return $provided->get('auth', null);
     }
 }
