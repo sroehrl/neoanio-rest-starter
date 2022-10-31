@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6966dd4ce573fcf7fd6f9c54921c26b8",
+    "content-hash": "1592b365fcc2a55b0a39666aec17c26b",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -825,16 +825,16 @@
         },
         {
             "name": "neoan.io/core",
-            "version": "dev-providing",
+            "version": "v0.1.0-beta",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sroehrl/neoan.io-lenkrad-core.git",
-                "reference": "c1c19c1138831ffd662d63107ffd65688ffa7528"
+                "reference": "f66d9c0249cdf33bd2cef81a5770038b4f235bae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sroehrl/neoan.io-lenkrad-core/zipball/c1c19c1138831ffd662d63107ffd65688ffa7528",
-                "reference": "c1c19c1138831ffd662d63107ffd65688ffa7528",
+                "url": "https://api.github.com/repos/sroehrl/neoan.io-lenkrad-core/zipball/f66d9c0249cdf33bd2cef81a5770038b4f235bae",
+                "reference": "f66d9c0249cdf33bd2cef81a5770038b4f235bae",
                 "shasum": ""
             },
             "require": {
@@ -871,9 +871,9 @@
             "description": "Neoan.io Lenkrad Framework",
             "support": {
                 "issues": "https://github.com/sroehrl/neoan.io-lenkrad-core/issues",
-                "source": "https://github.com/sroehrl/neoan.io-lenkrad-core/tree/providing"
+                "source": "https://github.com/sroehrl/neoan.io-lenkrad-core/tree/v0.1.0-beta"
             },
-            "time": "2022-10-31T17:06:03+00:00"
+            "time": "2022-10-31T17:30:00+00:00"
         },
         {
             "name": "neoan.io/legacy-db-adapter",
@@ -2617,7 +2617,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "neoan.io/core": 20
+        "neoan.io/core": 10
     },
     "prefer-stable": false,
     "prefer-lowest": false,
