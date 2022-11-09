@@ -3,17 +3,14 @@
 namespace App\Auth\Middleware;
 
 use Neoan\Errors\Unauthorized;
-use Neoan\Routing\Routable;
-use Neoan3\Apps\Stateless;
+use Neoan\Routing\Interfaces\Routable;
 
 class RequiresLogin implements Routable
 {
 
-    public function __invoke(array $provided): array
+    public function __invoke(Auth $auth): void
     {
-        try{
-            return ['auth' => Stateless::validate()];
-        } catch (\Exception $e) {
+        if(!$auth->get()) {
             new Unauthorized();
         }
     }

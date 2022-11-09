@@ -8,7 +8,7 @@ use Neoan\Routing\Attributes\Delete;
 use Neoan\Routing\Attributes\Get;
 use Neoan\Routing\Attributes\Post;
 use Neoan\Routing\Attributes\Put;
-use Neoan\Routing\Routable;
+use Neoan\Routing\Interfaces\Routable;
 
 #[Get('/api/example/:parameter*')]
 #[Post('/api/example/:parameter*')]
@@ -16,7 +16,7 @@ use Neoan\Routing\Routable;
 #[Delete('/api/example/:parameter*', RequiresLogin::class)]
 class Example implements Routable
 {
-    public function __invoke(array $provided): array
+    public function __invoke(): array
     {
         return [
             'description' => 'This endpoint returns whatever you provide',

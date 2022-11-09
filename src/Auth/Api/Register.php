@@ -7,12 +7,12 @@ use App\User\Model\User;
 use Neoan\Request\Request;
 use Neoan\Response\Response;
 use Neoan\Routing\Attributes\Post;
-use Neoan\Routing\Routable;
+use Neoan\Routing\Interfaces\Routable;
 
 #[Post('/api/auth/register')]
 class Register implements Routable
 {
-    public function __invoke(array $provided): array
+    public function __invoke(): array
     {
         try{
             $user = new User(Request::getInputs());
