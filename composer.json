@@ -10,7 +10,7 @@
     }
   ],
   "require": {
-    "neoan.io/core": "0.1.0",
+    "neoan.io/core": "0.2.1",
     "neoan.io/legacy-db-adapter": "1.*",
     "neoan3-apps/stateless": "^2.0"
   },

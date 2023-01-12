@@ -20,7 +20,7 @@ class Example implements Routable
     {
         return [
             'description' => 'This endpoint returns whatever you provide',
-            'method' => Request::getRequestMethod(),
+            'method' => Request::getRequestMethod()->name,
             'payload' => Request::getInputs(),
             'query' => Request::getQueries(),
             'parameter' => Request::getParameter('parameter')

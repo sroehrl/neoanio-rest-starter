@@ -10,7 +10,10 @@ use Neoan\NeoanApp;
 
 require_once 'vendor/autoload.php';
 
-$app = new NeoanApp(__DIR__ . '/src', __DIR__ , __DIR__);
+$setup = (new \Neoan\Helper\Setup())->setLibraryPath(__DIR__ . '/src')->setPublicPath(__DIR__);
+
+
+$app = new NeoanApp($setup , __DIR__);
 new \Config\Bootstrap($app);
 $console = new Application($app);
 $console->run();
