@@ -4,6 +4,11 @@
 // this file load our cli capabilities and is exposed to
 // allow advanced users to integrate own commands (based on symfony console)
 
+use Commands\CreateJWTForUser;
+use Commands\CreateUserCommand;
+use Commands\CreateUUID;
+use Commands\GetUuid;
+use Commands\UpdatePassword;
 use Neoan\Cli\Application;
 use Neoan\NeoanApp;
 
@@ -16,4 +21,9 @@ $setup = (new \Neoan\Helper\Setup())->setLibraryPath(__DIR__ . '/src')->setPubli
 $app = new NeoanApp($setup , __DIR__);
 new \Config\Bootstrap($app);
 $console = new Application($app);
+$console->add(new CreateUserCommand());
+$console->add(new CreateJWTForUser());
+$console->add(new CreateUUID());
+$console->add(new GetUuid());
+$console->add(new UpdatePassword());
 $console->run();

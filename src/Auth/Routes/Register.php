@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Auth\Api;
+namespace App\Auth\Routes;
 
 use App\Auth\Support\GenerateJWT;
 use App\User\Model\User;
