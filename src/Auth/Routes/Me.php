@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Auth\Api;
+namespace App\Auth\Routes;
 
 use App\Auth\Middleware\Auth;
 use App\Auth\Middleware\RequiresLogin;
