@@ -1,6 +1,6 @@
 <?php
 
-namespace App\User\Model;
+namespace App\User\Models;
 
 use App\Auth\Error\Unauthenticated;
 use Neoan\Database\Database;

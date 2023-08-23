@@ -2,7 +2,7 @@
 
 namespace App\Auth\Support;
 
-use App\User\Model\User;
+use App\User\Models\User;
 use Neoan\Helper\DataNormalization;
 use Neoan\Helper\Env;
 use Neoan3\Apps\Stateless;

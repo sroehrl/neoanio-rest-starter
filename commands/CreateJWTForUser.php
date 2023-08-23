@@ -3,7 +3,7 @@
 namespace Commands;
 
 use App\Auth\Support\GenerateJWT;
-use App\User\Model\User;
+use App\User\Models\User;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;

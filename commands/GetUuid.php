@@ -2,7 +2,7 @@
 
 namespace Commands;
 
-use App\User\Model\User;
+use App\User\Models\User;
 use Neoan\Model\Model;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
