@@ -38,8 +38,16 @@ class Docs implements Routable
                 }
                 $invoke = $reflection->getMethod('__invoke');
 
+                $method = strtoupper(str_replace('Neoan\\Routing\\Attributes\\', '',$attribute->getName()));
+                if($method === 'WEB'){
+                    // the only one?
+                    if(empty($topics[$topic[1]])){
+                        unset($topics[$topic[1]]);
+                    }
+                    continue;
+                }
                 $topics[$topic[1]][] = [
-                    'method' => strtoupper(str_replace('Neoan\\Routing\\Attributes\\', '',$attribute->getName())),
+                    'method' => $method,
                     'route' => $route,
                     'properties' => [...$params, ...$this->findProperties($invoke)],
                     'returns' => $invoke->getReturnType()->getName(),

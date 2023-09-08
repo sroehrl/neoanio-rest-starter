@@ -1,0 +1,55 @@
+<section x-data="xData" x-init="$watch('token', value => sessionStorage.token = value); init()">
+    <div>
+        <div>
+            <h2>Auth-token</h2>
+            <textarea x-model="token"></textarea>
+        </div>
+
+    </div>
+    <div >
+        <template x-for="(methods,topic) in data">
+            <div>
+                <h2 x-text="topic">{{topic}}</h2>
+                <template x-for="method in methods">
+                    <div class="y-spaced">
+                        <div class="flex">
+                            <h3 x-bind:class="method.method" x-text="method.method" class="method">{{method.method}}</h3>
+                            <h3 class="flex-1" x-text="method.route">{{method.route}}</h3>
+                            <div class="pointer" x-on:click="method.expanded =! method.expanded">
+                                <svg style="height: 24px" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <form x-on:submit.prevent="submit($event.target, method.route, method.method)" x-show="method.expanded" x-transition>
+                            <button class="y-spaced" type="button" x-on:click="method.try =!method.try">TOGGLE TRY</button>
+                            <template x-for="property in method.properties">
+
+                                <article class="grid">
+                                    <p x-bind:class="property.required ? 'font-strong' : 'text-gray'" x-text="property.property"></p>
+                                    <div>
+                                        <p x-text="property.type"></p>
+                                        <input x-show="method.try" x-bind:name="property.property" x-bind:type="getType(property.type)">
+                                    </div>
+
+                                    <p>
+                                        <span x-show="property.required">required</span>
+                                        <span x-show="!property.required">optional</span>
+                                    </p>
+                                </article>
+                            </template>
+                            <div>
+                                <button x-show="method.try" type="submit">send</button>
+                            </div>
+                            <article >
+
+                                <pre style="overflow-x: auto; max-width: 100%" x-text="'returns: ' + method.returns">results</pre>
+                            </article>
+                        </form>
+                    </div>
+                </template>
+
+            </div>
+        </template>
+    </div>
+</section>
