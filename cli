@@ -5,9 +5,14 @@
 // allow advanced users to integrate own commands (based on symfony console)
 
 use Commands\CreateJWTForUser;
+use Commands\CreateTypescriptInterface;
 use Commands\CreateUserCommand;
 use Commands\CreateUUID;
 use Commands\GetUuid;
+use Commands\ScaffoldModel;
+use Commands\ScaffoldPermission;
+use Commands\ScaffoldRequest;
+use Commands\ScaffoldRoute;
 use Commands\UpdatePassword;
 use Neoan\Cli\Application;
 use Neoan\NeoanApp;
@@ -26,4 +31,9 @@ $console->add(new CreateJWTForUser());
 $console->add(new CreateUUID());
 $console->add(new GetUuid());
 $console->add(new UpdatePassword());
+$console->add(new CreateTypescriptInterface());
+$console->add(new ScaffoldPermission($app));
+$console->add(new ScaffoldRequest($app));
+$console->add(new ScaffoldRoute($app));
+$console->add(new ScaffoldModel($app));
 $console->run();

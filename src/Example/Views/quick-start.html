@@ -1,0 +1,132 @@
+<section  x-data="postForm">
+    <div >
+        <h2 >Welcome to the fastest & easiest REST-API starter project</h2>
+        <p >current controller: {{name}}</p>
+        <p>What's included?</p>
+        <ul>
+            <li>JWT authentication</li>
+            <li>Attribute routing</li>
+            <li>ORM handler</li>
+        </ul>
+        <p>
+            In order to see the simplicity of handling requests,
+            please have a look at the file <code>src/Example/Api/Example.php</code> <br>
+            The endpoint accepts the methods POST, GET, PUT & DELETE (via attributes)
+        </p>
+        <h2 >Quick start</h2>
+        <h3>Creating new endpoints</h3>
+        <ul>
+            <li >Run
+                <pre >php cli create:controller App\Movies\Routes\GetMovies</pre>
+                in your terminal. (On unix systems, you will have to use 2 backslashes)
+            </li>
+            <li >Add the attribute
+                <pre >#[\Neoan\Routing\Attributes\Get('/api/movies')]</pre>
+                to the generated class (src/Movies/GetMovies/GetMovies.php).
+            </li>
+            <li >Visit <a  href="/api/movies" target="_blank">/api/movies</a>
+            </li>
+            <li >Let's create a POST-endpoint as well
+                <pre >php cli create:controller App\Movies\Routes\CreateMovie</pre>
+            </li>
+            <li >And route it via
+                <pre >#[\Neoan\Routing\Attributes\Post('/api/movies')]</pre>
+            </li>
+            <li>
+                <strong>Scaffold-command:</strong> This project is equipped with a command shortening the recommended structure.
+                <pre >php cli scaffold:route get Movie GetMovies</pre>
+                <pre >php cli scaffold:route post Movie CreateMovies</pre>
+            </li>
+        </ul>
+        <h3>Creating a new model</h3>
+        <ul>
+            <li >Run
+                <pre >php cli create:model App\Movies\Models\Movie</pre>
+                in your terminal. (On unix systems, you will have to use 2 backslashes)
+            </li>
+            <li >
+                Open the file <code>src/Movies/Models/Movie.php</code> and add two properties:
+                <ul style="list-style: none">
+                    <li >public string $name;</li>
+                    <li >public string $director;</li>
+                </ul>
+            </li>
+            <li >
+                Then, migrate all models
+                <pre >php cli migrate:models sqlite</pre>
+            </li>
+            <li>
+                <strong>Scaffold-command:</strong> This project is equipped with a command shortening the recommended structure.
+                <pre >php cli scaffold:model Movie</pre>
+            </li>
+        </ul>
+        <h3>Creating a new request (guard)</h3>
+        <ul>
+            <li>Run
+                <pre >php cli create:request App\Movies\Requests\WriteMovieRequest</pre>
+                in your terminal. (On unix systems, you will have to use 2 backslashes)
+            </li>
+            <li >
+                Open the file <code>src/Movies\Requests\WriteMovieRequest.php</code> and add two properties:
+                <ul style="list-style: none">
+                    <li >public string $name;</li>
+                    <li >public string $director;</li>
+                </ul>
+                In our simple example, this allows the same request properties as the model.
+            </li>
+            <li>
+                <strong>Scaffold-command:</strong> This project is equipped with a command shortening the recommended structure.
+                <pre >php cli scaffold:request Movie WriteMovieRequest</pre>
+            </li>
+        </ul>
+        <h3>Connecting the dots</h3>
+        <article>
+            Let's revisit our <code>CreateMovie</code>-controller and apply the following changes:
+            <ul>
+                <li>First, let's add our request guard to the invoke method
+                <pre>public function __invoke(\App\Movie\Requests\WriteMovieRequest $request): array</pre>
+                </li>
+                <li>Let's also change the return type of the method
+                    <pre>public function __invoke(\App\Movie\Requests\WriteMovieRequest $request): <span style="text-decoration: line-through;">array</span> \App\Movie\Models\Movie</pre>
+                </li>
+                <li>Now, instead of the existing content
+                    <pre><span style="text-decoration: line-through;">return ['name' => 'CreateMovie'];</span></pre>,
+                    we create or update a new movie
+                    <pre>return \App\Movie\Models\Movie::retrieveOneOrCreate((array) $request)->store();</pre>
+                </li>
+            </ul>
+        </article>
+        <h4 >Now let's create one or two movies</h4>
+        <form action="/api/movies" method="post" x-on:submit.prevent="send">
+            <input x-model="name" name="name"  placeholder="Name">
+            <input x-model="director" name="director"
+                   placeholder="Director">
+            <button type="submit" >store
+            </button>
+        </form>
+        <article>
+            <ul>
+
+                <li >
+                    Finally, we can expose our movies through our <code>GetMovies</code>-controller
+                    <pre ><span style="text-decoration: line-through;">return ['name' => 'GetMovies'];</span></pre>
+                </li>
+                <li >
+                    <pre >return \App\Movie\Models\Movie::retrieve()->toArray();</pre>
+                </li>
+                <li >That's it! Let's try it: <a  href="/api/movies"
+                                                  target="_blank">/api/movies</a>.
+                Or with the self-documenting API: <a href="?view=api">API</a>
+                </li>
+            </ul>
+        </article>
+
+        <h3>Ready for the deep-dive?</h3>
+        <p>
+            This starter is based on <a 
+                                        href="https://github.com/sroehrl/neoan.io-lenkrad-core#readme">neoan.io
+            LENKRAD</a>.
+            You can use this code under MIT license in any project of your choice.
+        </p>
+    </div>
+</section>
