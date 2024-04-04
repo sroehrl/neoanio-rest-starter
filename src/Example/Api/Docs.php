@@ -46,11 +46,17 @@ class Docs implements Routable
                     }
                     continue;
                 }
+                $returns = $invoke->getReturnType();
+                if(method_exists($returns, 'getTypes')){
+                    $returns = array_map(fn($type) => $type->getName(), $returns->getTypes());
+                } else {
+                    $returns = [$returns->getName()];
+                }
                 $topics[$topic[1]][] = [
                     'method' => $method,
                     'route' => $route,
                     'properties' => [...$params, ...$this->findProperties($invoke)],
-                    'returns' => $invoke->getReturnType()->getName(),
+                    'returns' => $returns,
                     'expanded' => false,
                     'try' => false
                 ];
