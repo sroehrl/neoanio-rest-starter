@@ -13,6 +13,9 @@
             integrity="sha512-0qU9M9jfqPw6FKkPafM3gy2CBAvUWnYVOfNPDYKVuRTel1PrciTj+a9P3loJB+j0QmN2Y0JYQmkBBS8W+mbezg=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <style>
+        :root {
+            --typography-spacing-vertical: .5rem
+        }
         body {
             font-family: 'Roboto', sans-serif;
             color: #454545;
@@ -57,6 +60,7 @@
         .pointer {
             cursor: pointer;
         }
+        .
 
     </style>
     <script>
@@ -65,6 +69,7 @@
                 'X-Custom-Header': 'foobar'
             }
         });
+
 
         function xData() {
             return {
@@ -124,7 +129,11 @@
                             data: payload
                         })
                         this.contentType = 'application/json';
-                        target.querySelector('pre').textContent = JSON.stringify(call.data, undefined, 2)
+                        const formatter = new JSONFormatter(call.data, 2, {
+                            theme: 'dark'
+                        })
+                        target.querySelector('.pretty').appendChild(formatter.render())
+                        // target.querySelector('pre').textContent = JSON.stringify(call.data, undefined, 2)
                     } catch (e) {
                         console.error(e)
                         alert(e)
@@ -163,6 +172,6 @@
 
 <div partial="src/Example/Views/{{content}}.html"></div>
 
-
+<script src="https://cdn.jsdelivr.net/npm/json-formatter-js@2.3.4/dist/json-formatter.umd.min.js"></script>
 </body>
 </html>
