@@ -8,7 +8,7 @@
     </div>
     <div >
         <template x-for="(methods,topic) in data">
-            <div>
+            <div style="border: 1px solid #808080; padding: 4px 12px">
                 <h2 x-text="topic">{{topic}}</h2>
                 <template x-for="method in methods">
                     <div class="y-spaced">
@@ -25,7 +25,7 @@
                             <button class="y-spaced" type="button" x-on:click="method.try =!method.try">TOGGLE TRY</button>
                             <template x-for="property in method.properties">
 
-                                <article class="grid">
+                                <div class="grid">
                                     <p x-bind:class="property.required ? 'font-strong' : 'text-gray'" x-text="property.property"></p>
                                     <div>
                                         <p x-text="property.type"></p>
@@ -36,15 +36,15 @@
                                         <span x-show="property.required">required</span>
                                         <span x-show="!property.required">optional</span>
                                     </p>
-                                </article>
+                                </div>
                             </template>
                             <div>
                                 <button x-show="method.try" type="submit">send</button>
                             </div>
-                            <article >
-
-                                <pre style="overflow-x: auto; max-width: 100%" x-text="'returns: ' + method.returns">results</pre>
-                            </article>
+                            <div>
+                                <div class="pretty bg-black"></div>
+                                <pre style="overflow-x: auto; max-width: 100%; padding: 5px" x-text="'returns: ' + method.returns">results</pre>
+                            </div>
                         </form>
                     </div>
                 </template>
