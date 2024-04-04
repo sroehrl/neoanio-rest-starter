@@ -61,7 +61,11 @@ class Docs implements Routable
                     'try' => false
                 ];
             }
-
+            foreach($topics as $i => $topic){
+                usort($topics[$i], function($a, $b){
+                    return strcmp($a['method'], $b['method']);
+                });
+            }
 
 
         }
