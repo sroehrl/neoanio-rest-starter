@@ -2,9 +2,9 @@
 
 namespace Config;
 
-use Neoan\Database\SqLiteAdapter;
+use Neoan\Database\Adapters\SqLiteAdapter;
 use Neoan\Helper\Env;
-use NeoanIo\MarketPlace\DatabaseAdapter;
+use Neoan\Database\Adapters\MySQLAdapter;
 
 class Database
 {
@@ -20,7 +20,7 @@ class Database
     }
     private function useMySql(): void
     {
-        \Neoan\Database\Database::connect(new DatabaseAdapter([
+        \Neoan\Database\Database::connect(new MySQLAdapter([
             'host' => Env::get('DB_HOST', 'localhost'),
             'name' => Env::get('DB_NAME', 'neoan_io'),
             'port' => Env::get('DB_PORT', 3306),
